@@ -47,10 +47,6 @@
         height: 45vw;
       }
 
-      .hide {
-        display: none;
-      }
-
       .clear {
         clear: both;
       }
@@ -199,7 +195,7 @@
         position: relative;
       }
 
-      #menu > img:not(.hide):not([id="menu-prev"]):not([id="menu-next"]) {
+      #menu > img:not([id="menu-prev"]):not([id="menu-next"]) {
         width: 71.0526315789%;
         margin: 0 auto;
         display: block;
@@ -214,10 +210,6 @@
         width: 56px;
         width: 2.9473684210526314vw;
         cursor: pointer;
-      }
-
-      #menu-prev.hide, #menu-next.hide {
-        display: none;
       }
 
       #menu-next {
@@ -330,14 +322,15 @@
         img#menu-prev, img#menu-next {
           width: 22px;
           width: 4.059040590405904vw;
+          padding: 1.5em;
         }
 
         #menu-prev {
-          left: 9%;
+          left: 2.5%;
         }
 
         #menu-next {
-          right: 9%;
+          right: 2.5%;
         }
 
         #contact > * {
@@ -396,8 +389,8 @@
     </div>
     <div id="menu">
       <img id="menu-image" src="http://cdn.majesticdiner.com/pdf-0.jpg">
-      <img id="menu-prev" class="hide" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
-      <img id="menu-next" class="hide" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
+      <img id="menu-prev" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
+      <img id="menu-next" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
     </div>
     <div id="contact">
       <div>
@@ -451,34 +444,16 @@
             return document.querySelector(elementSelector).offsetTop;
           }
 
-          function hideMenuNavigators() {
-            document.getElementById('menu-prev').className = 'hide';
-            document.getElementById('menu-next').className = 'hide';
-          }
-
           var currentVerticalScrollDistance = window.scrollY;
           var headerOffset = document.querySelector('header').offsetHeight || document.querySelector('header').clientHeight;
 
           if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#about-us')) {
-            hideMenuNavigators();
-
             return '#home-link';
           } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#menu')) {
-            hideMenuNavigators();
-
             return '#about-us-link';
           } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact')) {
-            if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact') * 0.8) {
-              document.getElementById('menu-prev').className = '';
-              document.getElementById('menu-next').className = '';
-            } else {
-              hideMenuNavigators();
-            }
-
             return '#menu-link';
           } else {
-            hideMenuNavigators();
-
             return '#contact-link';
           }
         }
