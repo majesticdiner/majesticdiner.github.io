@@ -47,6 +47,10 @@
         height: 45vw;
       }
 
+      .hide {
+        display: none;
+      }
+
       .clear {
         clear: both;
       }
@@ -192,13 +196,36 @@
       #menu {
         background: url(http://cdn.majesticdiner.com/images/menu-background.jpg) no-repeat;
         background-size: 100%;
+        position: relative;
       }
 
-      #menu > img {
+      #menu > img:not(.hide):not([id="menu-prev"]):not([id="menu-next"]) {
         width: 71.0526315789%;
         margin: 0 auto;
         display: block;
         opacity: 0.85;
+      }
+
+      #menu-prev, #menu-next {
+        display: block;
+        position: fixed;
+        top: 20em;
+        left: 18%;
+        width: 56px;
+        width: 2.9473684210526314vw;
+        cursor: pointer;
+      }
+
+      #menu-prev.hide, #menu-next.hide {
+        display: none;
+      }
+
+      #menu-next {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        right: 18%;
+        left: auto;
       }
 
       #contact {
@@ -299,6 +326,19 @@
           width: 100%;
         }
 
+        img#menu-prev, img#menu-next {
+          width: 16px;
+          width: 3vw;
+        }
+
+        #menu-prev {
+          left: 21%;
+        }
+
+        #menu-next {
+          right: 21%;
+        }
+
         #contact > * {
           width: 92.8421052632%;
         }
@@ -354,7 +394,9 @@
       </div>
     </div>
     <div id="menu">
-      <img src="http://cdn.majesticdiner.com/images/menu.jpg">
+      <img id="menu-image" src="http://cdn.majesticdiner.com/pdf-0.jpg">
+      <img id="menu-prev" class="hide" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
+      <img id="menu-next" class="hide" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
     </div>
     <div id="contact">
       <div>
@@ -408,16 +450,34 @@
             return document.querySelector(elementSelector).offsetTop;
           }
 
+          function hideMenuNavigators() {
+            document.getElementById('menu-prev').className = 'hide';
+            document.getElementById('menu-next').className = 'hide';
+          }
+
           var currentVerticalScrollDistance = window.scrollY;
           var headerOffset = document.querySelector('header').offsetHeight || document.querySelector('header').clientHeight;
 
           if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#about-us')) {
+            hideMenuNavigators();
+
             return '#home-link';
           } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#menu')) {
+            hideMenuNavigators();
+
             return '#about-us-link';
           } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact')) {
+            if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact') * 0.8) {
+              document.getElementById('menu-prev').className = '';
+              document.getElementById('menu-next').className = '';
+            } else {
+              hideMenuNavigators();
+            }
+
             return '#menu-link';
           } else {
+            hideMenuNavigators();
+
             return '#contact-link';
           }
         }
@@ -426,6 +486,34 @@
       }
 
       window.onscroll();
+
+      function getCurrentMenuPage() {
+        return parseInt(document.getElementById('menu-image')['src'].match(/[0-9]/)[0]);
+      }
+
+      document.getElementById('menu-prev').onclick = function menuPrevOnClick(event) {
+        var previousMenuPage = getCurrentMenuPage() - 1;
+
+        if (previousMenuPage < 0) {
+          previousMenuPage = 4;
+        }
+
+        var previousMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + previousMenuPage + '.jpg';
+
+        document.getElementById('menu-image')['src'] = previousMenuPageUrl;
+      };
+
+      document.getElementById('menu-next').onclick = function menuNextOnClick(event) {
+        var nextMenuPage = getCurrentMenuPage() + 1;
+
+        if (nextMenuPage > 4) {
+          nextMenuPage = 0;
+        }
+
+        var nextMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + nextMenuPage + '.jpg';
+
+        document.getElementById('menu-image')['src'] = nextMenuPageUrl;
+      };
     </script>
   </body>
 </html>
