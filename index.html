@@ -1,7 +1,431 @@
 <html>
   <head>
+    <title>Welcome to Majestic Diner</title>
+    <script src="//use.typekit.net/usj7pdf.js"></script>
+    <script>try { Typekit.load(); } catch (e) {}</script>
+    <style>
+      @font-face {
+        font-family: fc;
+        src: url(http://cdn.majesticdiner.com/fonts/Futura-CondensedMedium.ttf);
+      }
+
+      @font-face {
+        font-family: fceb;
+        src: url(http://cdn.majesticdiner.com/fonts/FuturaCondensedExtraBold.ttf);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        font-family: museo-sans, sans-serif;
+        font-weight: 700;
+      }
+
+      a:visited {
+        color: black;
+      }
+
+      a:hover {
+        color: #E84515;
+        font-weight: 900;
+      }
+
+      h1, h2, h3 {
+        margin: 0;
+      }
+
+      iframe {
+        border: none;
+        height: 600px;
+        height: 45vw;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      .light {
+        font-weight: lighter;
+      }
+
+      .bordered {
+        font-family: "museo-sans", sans-serif;
+        border: 2px solid #DCA99F;
+        position: relative;
+      }
+
+      .bordered:not(.no-border) > *:first-child {
+        font-family: fc, sans-serif;
+        font-size: 54px;
+        font-size: 2.86947368421vw;
+        position: absolute;
+        top: -0.5em;
+        left: 29.75%;
+        padding: 0 6.27399380804954%;
+      }
+
+      .bordered > *:not(:first-child):not(:last-child), .bordered > a {
+        margin-top: 2em;
+        font-size: 30px;
+        font-size: 1.57894736842vw;
+      }
+
+      .bordered > p {
+        font-size: 22px;
+        font-size: 1.15789473684vw;
+        line-height: 2.04545454545em;
+        padding-bottom: 1em;
+        font-weight: 500;
+      }
+
+      .bordered.gray {
+        border-color: #696769;
+      }
+
+      .no-border {
+        border: none;
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .no-border > p {
+        font-size: 16px;
+        font-size: 0.8421052631578947vw;
+      }
+
+      .divider {
+        display: inline-block;
+        width: 180px;
+        width: 37.89473684210527%;
+        border: 1.5px solid #727173;
+      }
+
+      header {
+        padding: 0 3.57894736842%;
+        text-align: right;
+        position: fixed;
+        width: 92.8421052632%;
+        background: white;
+        z-index: 1;
+      }
+
+      header > img {
+        width: 2.31578947368%;
+        float: left;
+        padding: 15px 0;
+        padding: 0.78947368421vw 0;
+      }
+
+      header > a {
+        display: inline-block;
+        line-height: 74px;
+        line-height: 5.1vw;
+      }
+
+      header > a.active {
+        color: #E84515;
+      }
+
+      header > a:not(:last-child) {
+        margin-right: 4.368421052%;
+      }
+
+      #home {
+        background: url(http://cdn.majesticdiner.com/images/home.jpg);
+        background-size: 100%;
+        width: 100%;
+        text-align: center;
+      }
+
+      #home > img {
+        margin: 0 auto;
+        padding-top: 350px;
+        padding-top: 18.4210526316vw;
+        width: 61%;
+        display: block;
+      }
+
+      #home > h2 {
+        font-family: fc, sans-serif;
+        color: white;
+        margin-top: -25px;
+        margin-top: -1.31578947368vw;
+        font-size: 59.8px;
+        font-size: 3.2vw;
+      }
+
+      #home > a {
+        color: white;
+        background: #E84515;
+        display: inline-block;
+        font-size: 26.5px;
+        font-size: 1.41806020067vw;
+        line-height: 74px;
+        line-height: 3.89473684211vw;
+        padding: 0 1.36842105263%;
+        margin-top: 10px;
+        margin-top: 0.87032201914vw;
+        margin-bottom: 150px;
+        margin-bottom: 13.0548302872vw;
+      }
+
+      #about-us {
+        background: #E84515;
+        color: white;
+        width: 55%;
+        padding: 125px 22.5%;
+        padding: 6.57894736842vw 22.5%;
+      }
+
+      #about-us > .bordered > h1 {
+        background: #E84515;
+      }
+
+      #menu {
+        background: url(http://cdn.majesticdiner.com/images/menu-background.jpg) no-repeat;
+        background-size: 100%;
+      }
+
+      #menu > img {
+        width: 71.0526315789%;
+        margin: 0 auto;
+        display: block;
+        opacity: 0.85;
+      }
+
+      #contact {
+        font-size: 0;
+      }
+
+      #contact > * {
+        font-size: 1rem;
+        vertical-align: top;
+        padding: 6.15789473684% 3.57894736842%;
+        width: 42.8421052632%;
+      }
+
+      #contact h2 {
+        color: #E84515;
+        font-family: fc, sans-serif;
+        font-size: 54px;
+        font-size: 2.86947368421vw;
+      }
+
+      #contact .bordered:not(:first-child):not(:last-child) h3 {
+        line-height: 1.5em;
+      }
+
+      #contact .bordered:not(:first-child):not(:last-child) a {
+        display: inline-block;
+        margin-top: 0.3em;
+      }
+
+      #contact > div {
+        display: inline-block;
+        font-size: 0;
+      }
+
+      #contact .bordered:last-child {
+        margin-top: 135px;
+        margin-top: 7.105263157894736vw;
+      }
+
+      #contact .bordered:last-child > h2 {
+        left: 25.5%;
+      }
+
+      #contact > div > * {
+        font-size: 1rem;
+      }
+
+      #contact .bordered > *:first-child {
+        background: white;
+      }
+
+      #contact .bordered > *:not(:first-child):not(:last-child) {
+        margin-top: 1.5em;
+      }
+
+      footer {
+        color: white;
+        background: black;
+        text-align: left;
+        padding: 0 3.57894736842%;
+        font-size: 15px;
+        font-size: 0.7894736842105263vw;
+        line-height: 1.846em;
+        font-family: "museo-sans", sans-serif;
+        font-weight: 500;
+      }
+
+      @media (max-width: 600px) {
+        header > a, footer {
+          font-size: 9px;
+        }
+
+        #about-us {
+          padding: 6.57895vw 3.57895%;
+          width: 92.8421%;
+        }
+
+        #about-us h1, #contact h2 {
+          font-size: 16px;
+          font-size: 4.776119402985075vw;
+        }
+
+        #about-us h2, #contact h3, #contact a {
+          font-size: 10px;
+          font-size: 2.9850746268656714vw;
+        }
+
+        #about-us p, #contact p {
+          font-size: 7px;
+          font-size: 2.0895522388059704vw;
+        }
+
+        #menu {
+          padding: 0 3.57894736842%;
+        }
+
+        #menu img {
+          width: 100%;
+        }
+
+        #contact > * {
+          width: 92.8421052632%;
+        }
+
+        #contact > *:first-child {
+          padding-bottom: 0;
+        }
+
+        #contact > * {
+          width: 92.8421052632%;
+        }
+
+        #contact .bordered > *:first-child {
+          left: 35%;
+        }
+
+        #contact .bordered.no-border {
+          width: 100%;
+        }
+
+        iframe {
+          height: 100vw;
+        }
+      }
+    </style>
+    <meta 7."="" 24="" dinner="" and="" lunch="" breakfast,="" serves="" diner="" majestic="" 1929.="" since="" pleases"="" that="" food="" content="Majestic Diner is located in the Poncey-Highlands area of Atlanta, GA. It has been serving " name="description">
+    <meta content="Majestic Diner" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    Hello!
+    <header>
+      <img src="http://cdn.majesticdiner.com/images/logo-mark.png">
+      <a id="home-link" href="/">HOME</a>
+      <a id="about-us-link" href="#about-us">ABOUT</a>
+      <a id="menu-link" href="#menu">MENU</a>
+      <a id="contact-link" href="#contact">CONTACT</a>
+      <div class="clear"></div>
+    </header>
+    <div id="home">
+      <img src="http://cdn.majesticdiner.com/images/logo-shadowed.png">
+      <h2>FOOD THAT PLEASES SINCE 1929</h2>
+      <a href="#contact">OPEN 24 HOURS</a>
+    </div>
+    <div id="about-us">
+      <div class="bordered">
+        <h1>MAJESTIC DINER</h1>
+        <h2>Since 1929</h2>
+        <p>
+          That's how long the Majestic has been serving up "Food That Pleases" to<br>
+          generations of Atlantans. Our menu offers tastes for any palate 24 hours a day.<br>
+          Come visit us anytime and experience Atlanta's coolest landmark.<br>
+        </p>
+      </div>
+    </div>
+    <div id="menu">
+      <img src="http://cdn.majesticdiner.com/images/menu.jpg">
+    </div>
+    <div id="contact">
+      <div>
+        <div class="bordered no-border">
+          <h2>DIRECTIONS</h2>
+          <div class="divider"></div>
+          <h3>1031 PONCE DE LEON AVE.<br>ATLANTA, GA 30306</h3>
+          <p>
+            We are located in the Poncy Highlands area of<br>
+            Atlanta near the corner of Ponce De Leon Ave.<br>
+            and North Highland Rd. Parking is conveniently<br>
+            located at the Plaza parking lot right next to us.
+          </p>
+        </div>
+        <div class="bordered no-border">
+          <h2>CONTACT</h2>
+          <div class="divider"></div>
+          <h3>
+            PHONE: <span class="light">404.875.0276</span><br>
+            FAX: <span class="light">404.872.8727</span>
+          </h3>
+          <a href="mailto:info@majesticdiner.com">info@majesticdiner.com</a>
+        </div>
+        <div class="bordered gray">
+          <h2>OPEN 24 HOURS</h2>
+          <h3>7 DAYS A WEEK | 364 DAYS A YEAR</h3>
+          <p>
+            We close on Christmas Eve at 6 am and<br>
+            reopen the day after Christmas at 6 am.
+          </p>
+        </div>
+      </div>
+      <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Majestic%20Diner%2C%20Ponce%20De%20Leon%20Avenue%20Northeast%2C%20Atlanta%2C%20GA%2C%20United%20States&key=AIzaSyDl1BiG-8xvB7ZLnFEE0XIsc6w3FaX2REY">
+      </iframe>
+    </div>
+    <footer>
+      &copy; Copyright Majestic Diner. All Rights Reserved.
+    </footer>
+    <script type="text/javascript">
+      window.onscroll = function windowOnScroll(event) {
+        function setActiveLink(linkId) {
+          while(document.getElementsByClassName('active')[0]) {
+            document.getElementsByClassName('active')[0].className = '';
+          }
+
+          document.querySelector(linkId).className = 'active';
+        }
+
+        function getActiveLinkId() {
+          function getDistanceFromTopOfPage(elementSelector) {
+            return document.querySelector(elementSelector).offsetTop;
+          }
+
+          var currentVerticalScrollDistance = window.scrollY;
+          var headerOffset = document.querySelector('header').offsetHeight || document.querySelector('header').clientHeight;
+
+          if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#about-us')) {
+            return '#home-link';
+          } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#menu')) {
+            return '#about-us-link';
+          } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact')) {
+            return '#menu-link';
+          } else {
+            return '#contact-link';
+          }
+        }
+
+        setActiveLink(getActiveLinkId());
+      }
+
+      window.onscroll();
+    </script>
   </body>
 </html>
