@@ -9,11 +9,6 @@
         src: url(http://cdn.majesticdiner.com/fonts/Futura-CondensedMedium.ttf);
       }
 
-      @font-face {
-        font-family: fceb;
-        src: url(http://cdn.majesticdiner.com/fonts/FuturaCondensedExtraBold.ttf);
-      }
-
       body {
         margin: 0;
         padding: 0;
@@ -108,6 +103,10 @@
         border: 1.5px solid #727173;
       }
 
+      .loading {
+        background: url(http://cdn.majesticdiner.com/images/giphy.gif) no-repeat center center;
+      }
+
       header {
         padding: 0 3.57894736842%;
         text-align: right;
@@ -200,6 +199,10 @@
         margin: 0 auto;
         display: block;
         opacity: 0.85;
+      }
+
+      #menu-image[src*="pdf-0.png"] + #menu-prev {
+        display: none;
       }
 
       #menu-prev, #menu-next {
@@ -388,7 +391,7 @@
       </div>
     </div>
     <div id="menu">
-      <img id="menu-image" src="http://cdn.majesticdiner.com/pdf-0.jpg">
+      <img id="menu-image" class="loading" src="http://cdn.majesticdiner.com/pdf-0.png">
       <img id="menu-prev" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
       <img id="menu-next" src="http://cdn.majesticdiner.com/images/menu-arrow.png">
     </div>
@@ -463,32 +466,34 @@
 
       window.onscroll();
 
+      var menuImage = document.getElementById('menu-image');
+
+      menuImage.onerror = function menuImageOnError(event) {
+        menuImage.src = 'http://cdn.majesticdiner.com/pdf-0.png';
+      }
+
+      menuImage.onload = function menuImageOnLoad(event) {
+        menuImage.className = '';
+      }
+
       function getCurrentMenuPage() {
-        return parseInt(document.getElementById('menu-image')['src'].match(/[0-9]/)[0]);
+        return parseInt(document.getElementById('menu-image')['src'].match(/[0-9](?=\.png)/)[0]);
       }
 
       document.getElementById('menu-prev').onclick = function menuPrevOnClick(event) {
-        var previousMenuPage = getCurrentMenuPage() - 1;
+        var previousMenuPage    = getCurrentMenuPage() - 1,
+            previousMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + previousMenuPage + '.png';
 
-        if (previousMenuPage < 0) {
-          previousMenuPage = 4;
-        }
-
-        var previousMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + previousMenuPage + '.jpg';
-
-        document.getElementById('menu-image')['src'] = previousMenuPageUrl;
+        menuImage.className = 'loading';
+        menuImage.src = previousMenuPageUrl;
       };
 
       document.getElementById('menu-next').onclick = function menuNextOnClick(event) {
-        var nextMenuPage = getCurrentMenuPage() + 1;
+        var nextMenuPage    = getCurrentMenuPage() + 1,
+            nextMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + nextMenuPage + '.png';
 
-        if (nextMenuPage > 4) {
-          nextMenuPage = 0;
-        }
-
-        var nextMenuPageUrl = 'http://cdn.majesticdiner.com/pdf-' + nextMenuPage + '.jpg';
-
-        document.getElementById('menu-image')['src'] = nextMenuPageUrl;
+        menuImage.className = 'loading';
+        menuImage.src = nextMenuPageUrl;
       };
     </script>
   </body>
