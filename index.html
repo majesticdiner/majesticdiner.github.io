@@ -469,7 +469,15 @@
       var menuImage = document.getElementById('menu-image');
 
       menuImage.onerror = function menuImageOnError(event) {
-        menuImage.src = 'http://cdn.majesticdiner.com/pdf-0.png';
+        if (getCurrentMenuPage() - 1) {
+          var styleSheet = document.styleSheets[0];
+
+          styleSheet.insertRule('#menu-image[src*="pdf-' + (getCurrentMenuPage() - 1).toString() + '.png"] ~ #menu-next { display: none; }', 1);
+
+          menuImage.src = 'http://cdn.majesticdiner.com/pdf-' + (getCurrentMenuPage() - 1).toString() + '.png';
+        } else {
+          menuImage.src = 'http://cdn.majesticdiner.com/pdf-0.png';
+        }
       }
 
       menuImage.onload = function menuImageOnLoad(event) {
