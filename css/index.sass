@@ -201,13 +201,28 @@ header > a:not(:last-child)
   font-size: 2.86947368421vw
   letter-spacing: 0.1em
 
-#contact .bordered > *:first-child
-  background: white
+#contact .bordered:first-child
+  margin-top: 135px
+  margin-top: 7.105263157894736vw
+  > h2
+    font-size: 75.6px
+    font-size: 4.01726315789vw
+    left: 14%
+  > h3
+    font-family: fc, sans-serif
+    font-size: 50.4px
+    font-size: 2.67817543859vw
+    margin: 1em 0 0.25em
+    letter-spacing: 3px
 
-#contact .bordered:not(:first-child):not(:last-child) h3
+#contact .bordered:not(:first-child)
+  margin-top: 135px
+  margin-top: 7.105263157894736vw
+
+#contact .bordered:last-child h3
   line-height: 1.5em
 
-#contact .bordered:not(:first-child):not(:last-child) a
+#contact .bordered:last-child a
   display: inline-block
   margin-top: 0.3em
 
@@ -221,17 +236,8 @@ header > a:not(:last-child)
 #contact .bordered > *:not(:first-child):not(:last-child)
   margin-top: 1.5em
 
-#contact .bordered:last-child
-  margin-top: 135px
-  margin-top: 7.105263157894736vw
-  > h2
-    font-size: 75.6px
-    font-size: 4.01726315789vw
-    left: 14%
-  > h3
-    margin-top: 2em !important
-    span
-      font-size: 1.4em
+#contact .bordered > *:first-child
+  background: white
 
 footer
   color: white
@@ -284,6 +290,9 @@ footer
   #menu-next
     right: 2.5%
 
+  #contact
+    height: auto
+
   #contact > *
     width: 92.8421052632%
 
@@ -293,9 +302,12 @@ footer
   #contact > *
     width: 92.8421052632%
 
-  #contact .bordered > h2:first-child
-    left: 16%
-    font-size: 1.4em
+  #contact .bordered:not(.no-border)
+    > h2:first-child
+      left: 26%
+      font-size: 1.4em
+    > h3
+      margin: 1.75em 0 1em
 
   #contact .bordered.no-border
     width: 100%
