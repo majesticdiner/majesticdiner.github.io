@@ -110,40 +110,50 @@ header > a:not(:last-child)
   background-size: cover
   width: 100%
   text-align: center
+  min-height: 400px
 
-#home > img
-  margin: 0 auto
-  padding-top: 415px
-  padding-top: 21.842105263157897vw
-  padding-bottom: 65px
-  padding-bottom: 3.421052631578948vw
-  width: 55.1578947368421%
-  display: block
+  & > img
+    margin: 0 auto
+    padding-top: 415px
+    padding-top: 21.842105263157897vw
+    padding-bottom: 65px
+    padding-bottom: 3.421052631578948vw
+    width: 55.1578947368421%
+    display: block
+    @media (max-width: 712px)
+      padding-top: 155px
+      width: 392px
+    @media (max-width: 400px)
+      width: 90%
 
-#home > h2
-  font-family: fc, sans-serif
-  color: white
-  margin-top: -25px
-  margin-top: -1.31578947368vw
-  font-size: 59.8px
-  font-size: 3.2vw
-  letter-spacing: 0.075em
+  & > h2
+    font-family: fc, sans-serif
+    color: white
+    margin-top: -25px
+    margin-top: -1.31578947368vw
+    font-size: 59.8px
+    font-size: 3.2vw
+    letter-spacing: 0.075em
+    @media (max-width: 712px)
+      font-size: 22px
 
-#home > a
-  color: white
-  background: #E84515
-  display: inline-block
-  font-size: 26.5px
-  font-size: 1.41806020067vw
-  line-height: 74px
-  line-height: 3.89473684211vw
-  padding: 0 1.36842105263%
-  margin-top: 10px
-  margin-top: 0.87032201914vw
-  margin-bottom: 150px
-  margin-bottom: 13.0548302872vw
-  letter-spacing: 0.05e
-  box-shadow: 5px 5px 8px #BCBEC0
+  & > a
+    color: white
+    background: #E84515
+    display: inline-block
+    font-size: 26.5px
+    font-size: 1.41806020067vw
+    line-height: 74px
+    line-height: 3.89473684211vw
+    padding: 0 1.36842105263%
+    margin-top: 10px
+    margin-top: 0.87032201914vw
+    margin-bottom: 150px
+    margin-bottom: 13.0548302872vw
+    letter-spacing: 0.05e
+    box-shadow: 5px 5px 8px #BCBEC0
+    @media (max-width: 712px)
+      font-size: 10px
 
 #about-us
   background: #E84515
@@ -304,9 +314,11 @@ footer
     width: 92.8421052632%
 
   #contact .bordered:not(.no-border)
+    width: 70%
+    margin: 0 auto
     > h2:first-child
-      left: 26%
-      font-size: 1.4em
+      left: 12%
+      font-size: 1.25em
     > h3
       margin: 1.75em 0 1em
 
