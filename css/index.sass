@@ -39,7 +39,7 @@ iframe
   border: 1px solid #DCA99F
   position: relative
 
-.bordered:not(.no-border) > *:first-child
+.bordered:not(.no-border) > *:first-child:not(.position-me)
   font-family: fc, sans-serif
   font-size: 54px
   font-size: 2.86947368421vw
@@ -83,6 +83,14 @@ iframe
 
 .loading
   background: url(/img/giphy.gif) no-repeat center center
+
+.position-me
+  display: inline-block
+  background: white
+  margin-bottom: -2.5em
+  padding: 0 2.5%
+  position: relative
+  top: -1.625vw
 
 header
   font-size: 14px
@@ -246,9 +254,6 @@ header > a:not(:last-child)
 #contact .bordered > *:not(:first-child):not(:last-child)
   margin-top: 1.5em
 
-#contact .bordered > *:first-child
-  background: white
-
 footer
   color: white
   background: black
@@ -315,8 +320,9 @@ footer
   #contact .bordered:not(.no-border)
     width: 70%
     margin: 0 auto
+    .position-me
+      top: -2.75vw
     > h2:first-child
-      left: 12%
       font-size: 1.25em
     > h3
       margin: 1.75em 0 1em
