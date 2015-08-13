@@ -265,19 +265,17 @@ footer
 
 @media (max-width: 600px)
   header, footer
-    font-size: 9px
+    font-size: 10px
     a
-      letter-spacing: 0.25em
+      letter-spacing: 0.125em
 
   br
     display: none
 
-  #contact .bordered:not(:first-child)
-    margin-top: 2rem
-
-  #about-us, #contact
-    padding: 6.57895vw 3.57895%
-    width: 92.8421%
+  #about-us
+    padding: 6.57895vw 6.5%
+    width: 87%
+    font-size: 0.95em
 
   #about-us h1, #contact h2
     font-size: 24px
@@ -289,18 +287,20 @@ footer
     span
       font-size: 1.25em
 
-  #about-us p, #contact p
-    font-size: 14px
-    font-size: 0.875em
-    margin-bottom: 0.5rem
-    padding-bottom: 0
+  #about-us, #contact
+    p
+      font-size: 14px
+      font-size: 0.875em
+      margin-bottom: 0.5rem
+      padding-bottom: 0
+    .position-me
+      top: -0.625em
 
   #menu
     padding: 0
     background-size: cover
-
-  #menu #menu-image
-    width: 100%
+    #menu-image
+      width: 100%
 
   img#menu-prev, img#menu-next
     width: 22px
@@ -314,33 +314,29 @@ footer
     right: 2.5%
 
   #contact
+    padding: 6.57895vw 9%
+    width: 82%
+    font-size: 0.90em
     height: auto
-
-  #contact > *
-    width: 100%
-    padding-left: 0
-    padding-right: 0
-
-  #contact > *:first-child
-    padding-bottom: 0
-
-  #contact > div
-    font-size: 1.25rem
-
-  #about-us, #contact
-    .position-me
-      top: -0.625em
-
-  #contact .bordered:not(.no-border)
-    margin: 0 auto
-    > h2:first-child
-      font-size: 1.25em
-    > h3
-      font-size: 0.875em
-      margin: 3em 0 1em
-
-  #contact .bordered.no-border
-    width: 100%
+    > *
+      width: 100%
+      padding-left: 0
+      padding-right: 0
+    > div
+      font-size: 1.25rem
+    *:first-child
+      padding-bottom: 0
+    .bordered:not(:first-child)
+      margin-top: 2rem
+    .bordered:not(.no-border)
+      margin: 0 auto
+      > h2:first-child
+        font-size: 1.25em
+      > h3
+        font-size: 0.875em
+        margin: 3em 0 1em
+    .bordered.no-border
+      width: 100%
 
   iframe
     margin-top: 2rem
