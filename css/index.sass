@@ -38,6 +38,8 @@ iframe
   font-family: "museo-sans", sans-serif
   border: 1px solid #DCA99F
   position: relative
+  padding: 0 2.5%
+  width: 95%
 
 .bordered:not(.no-border) > *:first-child:not(.position-me)
   font-family: fc, sans-serif
@@ -49,7 +51,7 @@ iframe
   letter-spacing: 0.1em
 
 .bordered > *:not(:first-child):not(:last-child), .bordered > a
-  margin-top: 2em
+  margin-top: 2rem
   font-size: 26.6px
   font-size: 1.3965vw
   letter-spacing: 0.05em
@@ -262,6 +264,15 @@ footer
   line-height: 1.846em
   font-family: "museo-sans", sans-serif
   font-weight: 500
+
+@media (max-width: 1024px)
+  .bordered, .no-border
+    > *:not(:first-child):not(:last-child)
+      font-size: 18px
+    > p
+      font-size: 12px
+    br
+      display: none
 
 @media (max-width: 600px)
   header, footer
