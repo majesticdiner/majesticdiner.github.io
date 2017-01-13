@@ -32,39 +32,58 @@ window.onscroll = function windowOnScroll(event) {
 window.onscroll();
 
 var menuImage = document.getElementById('menu-image');
+var menuPrevButton = document.getElementById('menu-prev');
+var menuNextButton = document.getElementById('menu-next');
+var lastMenuPage;
 
 menuImage.onerror = function menuImageOnError(event) {
-  if (getCurrentMenuPage() - 1) {
-    var styleSheet = document.styleSheets[0];
+  var previousMenuPage = getCurrentMenuPage() - 1;
+  var previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
 
-    styleSheet.insertRule('#menu-image[src*="menu-' + (getCurrentMenuPage() - 1).toString() + '.png"] ~ #menu-next { display: none; }', 1);
-
-    menuImage.src = '/img/menu-' + (getCurrentMenuPage() - 1).toString() + '.png';
-  } else {
-    menuImage.src = '/img/menu-0.png';
-  }
-}
+  menuImage.className = 'loading';
+  menuImage.src = previousMenuPageUrl;
+  menuNextButton.style['display'] = 'none';
+  lastMenuPage = previousMenuPage;
+};
 
 menuImage.onload = function menuImageOnLoad(event) {
   menuImage.className = '';
-}
+};
+
+menuPrevButton.onclick = function menuPrevOnClick(event) {
+  var currentMenuPage = getCurrentMenuPage();
+  var previousMenuPage = currentMenuPage - 1;
+  var previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
+
+  if (previousMenuPage > 0) {
+    menuImage.className = 'loading';
+    menuImage.src = previousMenuPageUrl;
+  }
+
+  if (previousMenuPage === 1) {
+    menuPrevButton.style['display'] = 'none';
+  }
+
+  menuNextButton.style['display'] = '';
+};
+
+menuNextButton.onclick = function menuNextOnClick(event) {
+  var currentMenuPage = getCurrentMenuPage();
+  var nextMenuPage = currentMenuPage + 1;
+  var nextMenuPageUrl = '/img/menu-' + nextMenuPage + '.png';
+
+  if (!lastMenuPage || currentMenuPage < lastMenuPage) {
+    menuImage.className = 'loading';
+    menuImage.src = nextMenuPageUrl;
+  }
+
+  if (nextMenuPage === lastMenuPage) {
+    menuNextButton.style['display'] = 'none';
+  }
+
+  menuPrevButton.style['display'] = '';
+};
 
 function getCurrentMenuPage() {
   return parseInt(document.getElementById('menu-image')['src'].match(/[0-9](?=\.png)/)[0]);
 }
-
-document.getElementById('menu-prev').onclick = function menuPrevOnClick(event) {
-  var previousMenuPage    = getCurrentMenuPage() - 1,
-      previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
-
-  menuImage.className = 'loading';
-  menuImage.src = previousMenuPageUrl;
-};
-
-document.getElementById('menu-next').onclick = function menuNextOnClick(event) {
-  var nextMenuPage    = getCurrentMenuPage() + 1,
-      nextMenuPageUrl = '/img/menu-' + nextMenuPage + '.png';
-
-  menuImage.className = 'loading';
-  menuImage.src = nextMenuPageUrl;
-};
