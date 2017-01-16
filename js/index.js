@@ -55,12 +55,12 @@ menuPrevButton.onclick = function menuPrevOnClick(event) {
   var previousMenuPage = currentMenuPage - 1;
   var previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
 
-  if (previousMenuPage > 0) {
+  if (previousMenuPage >= 0) {
     menuImage.className = 'loading';
     menuImage.src = previousMenuPageUrl;
   }
 
-  if (previousMenuPage === 1) {
+  if (previousMenuPage === 0) {
     menuPrevButton.style['display'] = 'none';
   }
 
