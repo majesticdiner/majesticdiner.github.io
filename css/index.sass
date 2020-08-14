@@ -12,7 +12,7 @@ a
   color: black
   font-family: museo-sans, sans-serif
   font-weight: 700
-  letter-spacing: 0.1e
+  letter-spacing: 0.1em
 
 a:visited
   color: black
@@ -65,12 +65,12 @@ iframe
 
 .bordered.gray
   border-color: #696769
-  width: 70%
+  width: 75%
   margin: 0 auto
 
 .no-border
   border: none
-  width: 50%
+  width: 100%
   display: inline-block
   vertical-align: top
 
@@ -97,7 +97,7 @@ iframe
 
 header
   font-size: 14px
-  padding: 1.5em 3.57894736842%
+  padding: 21px 3.57894736842%
   text-align: center
   position: fixed
   width: 92.8421052632%
@@ -105,16 +105,18 @@ header
   z-index: 1
 
 header > a
-  letter-spacing: 0.4em
-  padding-left: 4.368421052%
-  &:not(:last-child)
-    border-right: 2px solid #CCC 
+  display: inline-block
+  letter-spacing: 0.2em
+
+  &:not(:first-child)
+    padding-left: 16px
+    border-left: 2px solid #CCC 
 
 header > a.active
   color: #E84515
 
 header > a:not(:last-child)
-  padding-right: 4.368421052%
+  padding-right: 16px
 
 #home
   background: url(/img/home.jpg)
@@ -148,37 +150,34 @@ header > a:not(:last-child)
     @media (max-width: 712px)
       font-size: 22px
 
-  & > a
+  & > h3
     color: white
-    background: #E84515
     display: inline-block
+    font-family: "futura-pt-condensed", sans-serif
     font-size: 26.5px
-    font-size: 1.41806020067vw
+    font-size: 2.6vw
     line-height: 74px
     line-height: 3.89473684211vw
+    letter-spacing: 0.075em
     padding: 0 1.36842105263%
     margin-top: 10px
     margin-top: 0.87032201914vw
     margin-bottom: 150px
     margin-bottom: 13.0548302872vw
-    letter-spacing: 0.05e
-    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.30)
     @media (max-width: 712px)
-      font-size: 10px
+      font-size: 18px
 
 #about-us
-  background: #E84515
+  background: #444142
   color: white
   width: 55%
-  padding: 125px 22.5%
-  padding: 6.57894736842vw 22.5%
+  padding: 92px 22.5% 68px
   .position-me, > .bordered h1
-    background: #E84515
+    background: #444142
     letter-spacing: 0.1em
 
 #menu
-  background: url(/img/menu-background.jpg) no-repeat
-  background-size: 100% 100%
+  padding: 68px 0
   position: relative
 
 #menu > img:not([id="menu-prev"]):not([id="menu-next"])
@@ -194,7 +193,7 @@ header > a:not(:last-child)
   display: block
   position: absolute
   top: 47.5%
-  left: 18%
+  left: 40px
   width: 56px
   width: 2.9473684210526314vw
   cursor: pointer
@@ -203,7 +202,7 @@ header > a:not(:last-child)
   -ms-transform: rotate(180deg)
   -webkit-transform: rotate(180deg)
   transform: rotate(180deg)
-  right: 18%
+  right: 40px
   left: auto
 
 #contact
@@ -212,7 +211,7 @@ header > a:not(:last-child)
 #contact > *
   font-size: 1em
   vertical-align: top
-  padding: 6.15789473684% 2.57894736842%
+  padding: 68px 2.57894736842%
   width: 44.8421052632%
 
 #contact h2
@@ -223,8 +222,7 @@ header > a:not(:last-child)
   letter-spacing: 0.1em
 
 #contact .bordered:first-child
-  margin-top: 135px
-  margin-top: 7.105263157894736vw
+  margin-top: 16px
   > h2
     font-size: 75.6px
     font-size: 4.01726315789vw
@@ -237,11 +235,22 @@ header > a:not(:last-child)
     letter-spacing: 3px
 
 #contact .bordered:not(:first-child)
-  margin-top: 135px
-  margin-top: 5.5vw
+  margin-top: 60px
 
-#contact .bordered:last-child h3
-  line-height: 1.5em
+#contact .bordered:last-child
+  > div
+    margin-top: 1.5em
+    font-size: 1rem
+
+  h3
+    margin-bottom: 0.5em
+    line-height: 1.5em
+    white-space: nowrap
+
+    i
+        color: #E84515
+        font-weight: bold
+        vertical-align: middle
 
 #contact .bordered:last-child a
   display: inline-block
@@ -280,8 +289,23 @@ footer
 @media (max-width: 600px)
   header, footer
     font-size: 10px
+
+  header
+    font-size: 0
+    padding: 15px 8px
+    width: calc(100% - 16px)
+
     a
-      letter-spacing: 0.125em
+      font-size: 10px
+      letter-spacing: 0em
+      padding: 0
+
+      &:not(:first-child)
+        padding-left: 8px
+        border-width: 1px
+
+      &:not(:last-child)
+        padding-right: 8px
 
   br
     display: none
@@ -302,6 +326,8 @@ footer
       font-size: 1.25em
 
   #about-us, #contact
+    padding-bottom: 50px
+    padding-top: 58px
     p
       font-size: 14px
       font-size: 0.875em
@@ -311,8 +337,9 @@ footer
       top: -0.625em
 
   #menu
-    padding: 0
     background-size: cover
+    padding-bottom: 50px
+    padding-top: 50px
     #menu-image
       width: 100%
 
@@ -328,14 +355,13 @@ footer
     right: 2.5%
 
   #contact
-    padding: 6.57895vw 12.5%
+    padding: 50px 12.5%
     width: 75%
     height: auto
     font-size: 0.75em
     > *
       width: 100%
-      padding-left: 0
-      padding-right: 0
+      padding: 0
     > div
       font-size: 1.25em
     *:first-child

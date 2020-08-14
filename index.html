@@ -1,77 +1,117 @@
+---
+---
+
 <html>
   <head>
-    <title>Welcome to Majestic Diner</title>
-    <link href="/css/index.css" rel="stylesheet">
-    <meta 7."="" 24="" dinner="" and="" lunch="" breakfast,="" serves="" diner="" majestic="" 1929.="" since="" pleases"="" that="" food="" content="Majestic Diner is located in the Poncey-Highlands area of Atlanta, GA. It has been serving " name="description">
-    <meta content="Majestic Diner" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>{{ site.data.seo.page_title }}</title>
+    <link href="/css/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css"
+    />
+    <meta content="{{ site.data.seo.description }}" name="description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://use.typekit.net/rpe7aws.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
+    <script>
+      try {
+        Typekit.load({ async: true });
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <header>
-      <a id="home-link" href="/">HOME</a>
-      <a id="about-us-link" href="#about-us">ABOUT</a>
-      <a id="menu-link" href="#menu">MENU</a>
-      <a id="contact-link" href="#contact">FIND US</a>
+      <a id="home-link" href="/">{{ site.data.header.home_link }}</a>
+      <a id="about-us-link" href="#about-us"
+        >{{ site.data.header.about_us_link }}</a
+      >
+      <a id="menu-link" href="#menu">{{ site.data.header.menu_link }}</a>
+      <a
+        id="uber-eats-link"
+        href="{{ site.data.general.uber_eats_url }}"
+        target="_blank"
+        >{{ site.data.header.uber_eats_link }}</a
+      >
+      <a id="contact-link" href="#contact"
+        >{{ site.data.header.contact_link }}</a
+      >
+      <a href="{{ site.data.general.instagram_url }}" target="_blank"
+        >{{ site.data.header.instagram_link }}</a
+      >
     </header>
     <div id="home">
-      <img src="/img/logo.png">
-      <h2>FOOD THAT PLEASES SINCE 1929</h2>
-      <a href="#contact">OPEN 7:30AM TO 2:30PM</a>
+      <img src="/img/logo.png" />
+      <h2>{{ site.data.home.heading }}</h2>
+      <h3>
+        {{ site.data.home.subheading | replace: ":hours",
+        site.data.general.hours }}
+      </h3>
     </div>
     <div id="about-us">
       <div class="bordered">
         <div class="position-me">
-          <h1>MAJESTIC DINER</h1>
+          <h1>{{ site.data.about_us.heading }}</h1>
         </div>
-        <h2>Since 1929</h2>
+        <h2>{{ site.data.about_us.subheading }}</h2>
         <p>
-          That's how long the Majestic has been serving up "Food That Pleases" to<br>
-          generations of Atlantans. Our menu offers tastes for any palate from 7:30am to 2:30pm each day.<br>
-          Come visit us anytime and experience Atlanta's coolest landmark.<br>
+          {% assign hours_downcase = site.data.general.hours | downcase %} {{
+          site.data.about_us.description | replace: ":hours", hours_downcase }}
         </p>
       </div>
     </div>
     <div id="menu">
-      <img id="menu-image" class="loading" src="/img/menu-0.png">
-      <img id="menu-prev" src="/img/menu-arrow.png" style="display: none;">
-      <img id="menu-next" src="/img/menu-arrow.png">
+      <img id="menu-image" src="/img/menu-0.png" />
+      <img id="next-menu-image" src="/img/menu-1.png" style="display: none;" />
+      <img id="menu-prev" src="/img/menu-arrow.png" style="display: none;" />
+      <img id="menu-next" src="/img/menu-arrow.png" />
     </div>
     <div id="contact">
       <div>
         <div class="bordered gray">
           <div class="position-me">
-            <h2>OPEN 7:30AM TO 2:30PM</h2>
+            <h2>
+              {{ site.data.contact.hours_heading | replace: ":hours",
+              site.data.general.hours }}
+            </h2>
           </div>
-          <h3><span>7 DAYS A WEEK</span></h3>
+          <h3><span>{{ site.data.contact.hours_subheading }}</span></h3>
         </div>
         <div class="bordered no-border">
-          <h2>DIRECTIONS</h2>
+          <h2>{{ site.data.contact.directions_heading }}</h2>
           <div class="divider"></div>
           <h3>
-            <div>1031 PONCE DE LEON AVE.</div>
-            ATLANTA, GA 30306
+            {{ site.data.contact.directions_subheading }}
           </h3>
           <p>
-            We are located in the Poncy Highlands area of<br>
-            Atlanta near the corner of Ponce De Leon Ave.<br>
-            and North Highland Rd. Parking is conveniently<br>
-            located at the Plaza parking lot right next to us.
+            {{ site.data.contact.directions_description }}
           </p>
         </div>
         <div class="bordered no-border">
-          <h2>CONTACT</h2>
+          <h2>{{ site.data.contact.heading }}</h2>
           <div class="divider"></div>
-          <h3>
-            PHONE: <span class="light">404.875.0276</span><br>
-          </h3>
-          <a href="mailto:info@majesticdiner.com">info@majesticdiner.com</a>
+          <div>
+            <h3>
+              <i class="fas fa-phone-alt"></i>
+              <span class="light">{{ site.data.general.phone_number }}</span>
+            </h3>
+            <h3>
+              <i class="fas fa-paper-plane"></i>
+              <a href="mailto:{{ site.data.general.email_address }}"
+                >{{ site.data.general.email_address }}</a
+              >
+            </h3>
+            <h3>
+              <i class="fab fa-instagram"></i>
+              <a href="{{ site.data.general.instagram_url }}" target="_blank"
+                >{{ site.data.general.instagram_handle }}</a
+              >
+            </h3>
+          </div>
         </div>
       </div>
-      <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Majestic%20Diner%2C%20Ponce%20De%20Leon%20Avenue%20Northeast%2C%20Atlanta%2C%20GA%2C%20United%20States&key=AIzaSyDl1BiG-8xvB7ZLnFEE0XIsc6w3FaX2REY">
+      <iframe
+        frameborder="0"
+        src="https://www.google.com/maps/embed/v1/place?q=Majestic%20Diner%2C%20Ponce%20De%20Leon%20Avenue%20Northeast%2C%20Atlanta%2C%20GA%2C%20United%20States&key=AIzaSyDl1BiG-8xvB7ZLnFEE0XIsc6w3FaX2REY"
+      >
       </iframe>
     </div>
     <footer>

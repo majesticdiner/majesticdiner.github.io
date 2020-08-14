@@ -1,10 +1,10 @@
 window.onscroll = function windowOnScroll(event) {
   function setActiveLink(linkId) {
-    while(document.getElementsByClassName('active')[0]) {
-      document.getElementsByClassName('active')[0].className = '';
+    while (document.getElementsByClassName("active")[0]) {
+      document.getElementsByClassName("active")[0].className = "";
     }
 
-    document.querySelector(linkId).className = 'active';
+    document.querySelector(linkId).className = "active";
   }
 
   function getActiveLinkId() {
@@ -13,77 +13,90 @@ window.onscroll = function windowOnScroll(event) {
     }
 
     var currentVerticalScrollDistance = window.scrollY;
-    var headerOffset = document.querySelector('header').offsetHeight || document.querySelector('header').clientHeight;
+    var headerOffset =
+      document.querySelector("header").offsetHeight ||
+      document.querySelector("header").clientHeight;
 
-    if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#about-us')) {
-      return '#home-link';
-    } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#menu')) {
-      return '#about-us-link';
-    } else if (currentVerticalScrollDistance + headerOffset < getDistanceFromTopOfPage('#contact')) {
-      return '#menu-link';
+    if (
+      currentVerticalScrollDistance + headerOffset <
+      getDistanceFromTopOfPage("#about-us")
+    ) {
+      return "#home-link";
+    } else if (
+      currentVerticalScrollDistance + headerOffset <
+      getDistanceFromTopOfPage("#menu")
+    ) {
+      return "#about-us-link";
+    } else if (
+      currentVerticalScrollDistance + headerOffset <
+      getDistanceFromTopOfPage("#contact")
+    ) {
+      return "#menu-link";
     } else {
-      return '#contact-link';
+      return "#contact-link";
     }
   }
 
   setActiveLink(getActiveLinkId());
-}
+};
 
 window.onscroll();
 
-var menuImage = document.getElementById('menu-image');
-var menuPrevButton = document.getElementById('menu-prev');
-var menuNextButton = document.getElementById('menu-next');
+var menuImage = document.getElementById("menu-image");
+var nextMenuImage = document.getElementById("next-menu-image");
+var menuPrevButton = document.getElementById("menu-prev");
+var menuNextButton = document.getElementById("menu-next");
 var lastMenuPage;
 
-menuImage.onerror = function menuImageOnError(event) {
-  var previousMenuPage = getCurrentMenuPage() - 1;
-  var previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
-
-  menuImage.className = 'loading';
-  menuImage.src = previousMenuPageUrl;
-  menuNextButton.style['display'] = 'none';
-  lastMenuPage = previousMenuPage;
+nextMenuImage.onerror = function nextMenuImageOnError(event) {
+  menuNextButton.style["display"] = "none";
+  lastMenuPage = getCurrentMenuPage();
 };
 
 menuImage.onload = function menuImageOnLoad(event) {
-  menuImage.className = '';
+  menuImage.className = "";
 };
 
 menuPrevButton.onclick = function menuPrevOnClick(event) {
   var currentMenuPage = getCurrentMenuPage();
   var previousMenuPage = currentMenuPage - 1;
-  var previousMenuPageUrl = '/img/menu-' + previousMenuPage + '.png';
+  var previousMenuPageUrl = "/img/menu-" + previousMenuPage + ".png";
 
   if (previousMenuPage >= 0) {
-    menuImage.className = 'loading';
+    menuImage.className = "loading";
     menuImage.src = previousMenuPageUrl;
   }
 
   if (previousMenuPage === 0) {
-    menuPrevButton.style['display'] = 'none';
+    menuPrevButton.style["display"] = "none";
   }
 
-  menuNextButton.style['display'] = '';
+  menuNextButton.style["display"] = "";
 };
 
 menuNextButton.onclick = function menuNextOnClick(event) {
   var currentMenuPage = getCurrentMenuPage();
   var nextMenuPage = currentMenuPage + 1;
-  var nextMenuPageUrl = '/img/menu-' + nextMenuPage + '.png';
+  var nextMenuPageUrl = "/img/menu-" + nextMenuPage + ".png";
+  var nextNextMenuPage = nextMenuPage + 1;
+  var nextNextMenuPageUrl = "/img/menu-" + nextNextMenuPage + ".png";
 
   if (!lastMenuPage || currentMenuPage < lastMenuPage) {
-    menuImage.className = 'loading';
+    menuImage.className = "loading";
     menuImage.src = nextMenuPageUrl;
+
+    if (!lastMenuPage) nextMenuImage.src = nextNextMenuPageUrl;
   }
 
   if (nextMenuPage === lastMenuPage) {
-    menuNextButton.style['display'] = 'none';
+    menuNextButton.style["display"] = "none";
   }
 
-  menuPrevButton.style['display'] = '';
+  menuPrevButton.style["display"] = "";
 };
 
 function getCurrentMenuPage() {
-  return parseInt(document.getElementById('menu-image')['src'].match(/[0-9](?=\.png)/)[0]);
+  return parseInt(
+    document.getElementById("menu-image")["src"].match(/[0-9](?=\.png)/)[0]
+  );
 }
