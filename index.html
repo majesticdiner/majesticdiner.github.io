@@ -25,12 +25,31 @@
         >{{ site.data.header.about_us_link }}</a
       >
       <a id="menu-link" href="#menu">{{ site.data.header.menu_link }}</a>
-      <a
-        id="uber-eats-link"
-        href="{{ site.data.general.uber_eats_url }}"
-        target="_blank"
-        >{{ site.data.header.uber_eats_link }}</a
-      >
+      <div id="order-link">
+        <a href="#" onclick="return false;"
+          >{{ site.data.header.order_link }}</a
+        >
+        <ul>
+          <li>
+            <a
+              id="open-dining-link"
+              href="{{ site.data.general.open_dining_url }}"
+              target="_blank"
+            >
+              {{ site.data.header.open_dining_link }}
+            </a>
+          </li>
+          <li>
+            <a
+              id="uber-eats-link"
+              href="{{ site.data.general.uber_eats_url }}"
+              target="_blank"
+            >
+              {{ site.data.header.uber_eats_link }}
+            </a>
+          </li>
+        </ul>
+      </div>
       <a id="contact-link" href="#contact"
         >{{ site.data.header.contact_link }}</a
       >
@@ -60,9 +79,20 @@
     </div>
     <div id="menu">
       <img id="menu-image" src="/img/menu-0.png" />
-      <img id="next-menu-image" src="/img/menu-1.png" style="display: none;" />
-      <img id="menu-prev" src="/img/menu-arrow.png" style="display: none;" />
+      <img id="next-menu-image" src="/img/menu-1.png" style="display: none" />
+      <img id="menu-prev" src="/img/menu-arrow.png" style="display: none" />
       <img id="menu-next" src="/img/menu-arrow.png" />
+      <div id="menu-order-buttons">
+        <a href="{{ site.data.general.open_dining_url }}" target="_blank"
+          >{{ site.data.menu.open_dining_link }}</a
+        >
+        <a
+          class="uber-eats"
+          href="{{ site.data.general.uber_eats_url }}"
+          target="_blank"
+          >{{ site.data.menu.uber_eats_link }}</a
+        >
+      </div>
     </div>
     <div id="contact">
       <div>
@@ -78,12 +108,8 @@
         <div class="bordered no-border">
           <h2>{{ site.data.contact.directions_heading }}</h2>
           <div class="divider"></div>
-          <h3>
-            {{ site.data.contact.directions_subheading }}
-          </h3>
-          <p>
-            {{ site.data.contact.directions_description }}
-          </p>
+          <h3>{{ site.data.contact.directions_subheading }}</h3>
+          <p>{{ site.data.contact.directions_description }}</p>
         </div>
         <div class="bordered no-border">
           <h2>{{ site.data.contact.heading }}</h2>
@@ -114,9 +140,7 @@
       >
       </iframe>
     </div>
-    <footer>
-      &copy; Copyright Majestic Diner. All Rights Reserved.
-    </footer>
+    <footer>&copy; Copyright Majestic Diner. All Rights Reserved.</footer>
     <script type="text/javascript" src="/js/index.js"></script>
   </body>
 </html>

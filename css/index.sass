@@ -104,19 +104,46 @@ header
   background: white
   z-index: 1
 
-header > a
+header
+  #order-link, > a
+    display: inline-block
+    letter-spacing: 0.2em
+
+    &:not(:first-child)
+      padding-left: 16px
+      border-left: 2px solid #CCC
+
+    &:not(:last-child)
+      padding-right: 16px
+
+#order-link, header
+  > a.active
+    color: #E84515
+
+#order-link
   display: inline-block
-  letter-spacing: 0.2em
+  position: relative
 
-  &:not(:first-child)
-    padding-left: 16px
-    border-left: 2px solid #CCC 
+  ul
+    background: white
+    box-shadow: 0px 18px 18px rgba(0, 0, 0, .5)
+    display: none
+    list-style-type: none
+    margin: 0
+    padding: 4px 0 8px
+    position: absolute
+    left: 0
+    text-align: left
 
-header > a.active
-  color: #E84515
+    li
+      padding: 8px 16px 0
 
-header > a:not(:last-child)
-  padding-right: 16px
+    &:hover
+      display: block
+
+  &:hover
+    ul
+      display: block
 
 #home
   background: url(/img/home.jpg)
@@ -204,6 +231,38 @@ header > a:not(:last-child)
   transform: rotate(180deg)
   right: 40px
   left: auto
+
+#menu-order-buttons
+  display: flex
+  justify-content: center
+
+  a
+    color: white
+    background: #E84515
+    border-radius: 4px
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .3)
+    font-family: "futura-pt-condensed", sans-serif
+    font-size: 26px
+    font-weight: 700
+    line-height: 54px
+    letter-spacing: 0.075em
+    margin: 80px 20px 0
+    padding: 0 12px
+    transition: background 0.125s linear
+
+    &:hover
+      background: darken(#E84515, 6)
+
+    &.uber-eats
+      background: black
+
+      &:hover
+        background: #333333
+
+    @media (max-width: 712px)
+      font-size: 14px
+      line-height: 30px
+      margin: 40px 12px 0
 
 #contact
   font-size: 0
@@ -300,12 +359,17 @@ footer
       letter-spacing: 0em
       padding: 0
 
+    #order-link, > a
       &:not(:first-child)
         padding-left: 8px
         border-width: 1px
 
       &:not(:last-child)
         padding-right: 8px
+
+    #order-link li
+      padding-left: 8px
+      padding-right: 8px
 
   br
     display: none
