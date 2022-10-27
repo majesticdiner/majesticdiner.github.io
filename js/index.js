@@ -60,7 +60,7 @@ menuImage.onload = function menuImageOnLoad(event) {
 menuPrevButton.onclick = function menuPrevOnClick(event) {
   var currentMenuPage = getCurrentMenuPage();
   var previousMenuPage = currentMenuPage - 1;
-  var previousMenuPageUrl = "/img/menu-" + previousMenuPage + ".png";
+  var previousMenuPageUrl = "/img/menu-" + previousMenuPage + ".png" + "?" + getTimeAtCurrentMinute();
 
   if (previousMenuPage >= 0) {
     menuImage.className = "loading";
@@ -77,9 +77,9 @@ menuPrevButton.onclick = function menuPrevOnClick(event) {
 menuNextButton.onclick = function menuNextOnClick(event) {
   var currentMenuPage = getCurrentMenuPage();
   var nextMenuPage = currentMenuPage + 1;
-  var nextMenuPageUrl = "/img/menu-" + nextMenuPage + ".png";
+  var nextMenuPageUrl = "/img/menu-" + nextMenuPage + ".png"  + "?" + getTimeAtCurrentMinute();
   var nextNextMenuPage = nextMenuPage + 1;
-  var nextNextMenuPageUrl = "/img/menu-" + nextNextMenuPage + ".png";
+  var nextNextMenuPageUrl = "/img/menu-" + nextNextMenuPage + ".png"  + "?" + getTimeAtCurrentMinute();
 
   if (!lastMenuPage || currentMenuPage < lastMenuPage) {
     menuImage.className = "loading";
@@ -99,4 +99,13 @@ function getCurrentMenuPage() {
   return parseInt(
     document.getElementById("menu-image")["src"].match(/[0-9](?=\.png)/)[0]
   );
+}
+
+function getTimeAtCurrentMinute() {
+  var now = new Date();
+
+  now.setMilliseconds(0);
+  now.setSeconds(0);
+
+  return now.getTime();
 }
