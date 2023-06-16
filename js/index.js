@@ -1,3 +1,5 @@
+const MENU_FILE_EXTENSION = "jpeg";
+
 window.onscroll = function windowOnScroll(event) {
   function setActiveLink(linkId) {
     while (document.getElementsByClassName("active")[0]) {
@@ -12,8 +14,8 @@ window.onscroll = function windowOnScroll(event) {
       return document.querySelector(elementSelector).offsetTop;
     }
 
-    var currentVerticalScrollDistance = window.scrollY;
-    var headerOffset =
+    const currentVerticalScrollDistance = window.scrollY;
+    const headerOffset =
       document.querySelector("header").offsetHeight ||
       document.querySelector("header").clientHeight;
 
@@ -42,11 +44,11 @@ window.onscroll = function windowOnScroll(event) {
 
 window.onscroll();
 
-var menuImage = document.getElementById("menu-image");
-var nextMenuImage = document.getElementById("next-menu-image");
-var menuPrevButton = document.getElementById("menu-prev");
-var menuNextButton = document.getElementById("menu-next");
-var lastMenuPage;
+const menuImage = document.getElementById("menu-image");
+const nextMenuImage = document.getElementById("next-menu-image");
+const menuPrevButton = document.getElementById("menu-prev");
+const menuNextButton = document.getElementById("menu-next");
+let lastMenuPage;
 
 nextMenuImage.onerror = function nextMenuImageOnError(event) {
   menuNextButton.style["display"] = "none";
@@ -58,9 +60,9 @@ menuImage.onload = function menuImageOnLoad(event) {
 };
 
 menuPrevButton.onclick = function menuPrevOnClick(event) {
-  var currentMenuPage = getCurrentMenuPage();
-  var previousMenuPage = currentMenuPage - 1;
-  var previousMenuPageUrl = "/img/menu-" + previousMenuPage + ".png" + "?" + getTimeAtCurrentMinute();
+  const currentMenuPage = getCurrentMenuPage();
+  const previousMenuPage = currentMenuPage - 1;
+  const previousMenuPageUrl = getMenuUrl(previousMenuPage);
 
   if (previousMenuPage >= 0) {
     menuImage.className = "loading";
@@ -75,11 +77,12 @@ menuPrevButton.onclick = function menuPrevOnClick(event) {
 };
 
 menuNextButton.onclick = function menuNextOnClick(event) {
-  var currentMenuPage = getCurrentMenuPage();
-  var nextMenuPage = currentMenuPage + 1;
-  var nextMenuPageUrl = "/img/menu-" + nextMenuPage + ".png"  + "?" + getTimeAtCurrentMinute();
-  var nextNextMenuPage = nextMenuPage + 1;
-  var nextNextMenuPageUrl = "/img/menu-" + nextNextMenuPage + ".png"  + "?" + getTimeAtCurrentMinute();
+  const currentMenuPage = getCurrentMenuPage();
+  const nextMenuPage = currentMenuPage + 1;
+  const timeAtCurrentMinute = getTimeAtCurrentMinute();
+  const nextMenuPageUrl = getMenuUrl(nextMenuPage);
+  const nextNextMenuPage = nextMenuPage + 1;
+  const nextNextMenuPageUrl = getMenuUrl(nextNextMenuPage);
 
   if (!lastMenuPage || currentMenuPage < lastMenuPage) {
     menuImage.className = "loading";
@@ -96,13 +99,19 @@ menuNextButton.onclick = function menuNextOnClick(event) {
 };
 
 function getCurrentMenuPage() {
+  const currentMenuPageRegExp = new RegExp(`[0-9](?=\.${MENU_FILE_EXTENSION})`);
+
   return parseInt(
-    document.getElementById("menu-image")["src"].match(/[0-9](?=\.png)/)[0]
+    document.getElementById("menu-image")["src"].match(currentMenuPageRegExp)[0]
   );
 }
 
+function getMenuUrl(page) {
+  return `/img/menu-${page}.${MENU_FILE_EXTENSION}?${getTimeAtCurrentMinute()}`;
+}
+
 function getTimeAtCurrentMinute() {
-  var now = new Date();
+  const now = new Date();
 
   now.setMilliseconds(0);
   now.setSeconds(0);
