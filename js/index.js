@@ -50,10 +50,12 @@ const menuPrevButton = document.getElementById("menu-prev");
 const menuNextButton = document.getElementById("menu-next");
 let lastMenuPage;
 
-nextMenuImage.onerror = function nextMenuImageOnError(event) {
-  menuNextButton.style["display"] = "none";
-  lastMenuPage = getCurrentMenuPage();
-};
+if (nextMenuImage) {
+  nextMenuImage.onerror = function nextMenuImageOnError(event) {
+    menuNextButton.style["display"] = "none";
+    lastMenuPage = getCurrentMenuPage();
+  };
+}
 
 menuImage.onload = function menuImageOnLoad(event) {
   menuImage.className = "";
@@ -76,27 +78,29 @@ menuPrevButton.onclick = function menuPrevOnClick(event) {
   menuNextButton.style["display"] = "";
 };
 
-menuNextButton.onclick = function menuNextOnClick(event) {
-  const currentMenuPage = getCurrentMenuPage();
-  const nextMenuPage = currentMenuPage + 1;
-  const timeAtCurrentMinute = getTimeAtCurrentMinute();
-  const nextMenuPageUrl = getMenuUrl(nextMenuPage);
-  const nextNextMenuPage = nextMenuPage + 1;
-  const nextNextMenuPageUrl = getMenuUrl(nextNextMenuPage);
+if (menuNextButton) {
+  menuNextButton.onclick = function menuNextOnClick(event) {
+    const currentMenuPage = getCurrentMenuPage();
+    const nextMenuPage = currentMenuPage + 1;
+    const timeAtCurrentMinute = getTimeAtCurrentMinute();
+    const nextMenuPageUrl = getMenuUrl(nextMenuPage);
+    const nextNextMenuPage = nextMenuPage + 1;
+    const nextNextMenuPageUrl = getMenuUrl(nextNextMenuPage);
 
-  if (!lastMenuPage || currentMenuPage < lastMenuPage) {
-    menuImage.className = "loading";
-    menuImage.src = nextMenuPageUrl;
+    if (!lastMenuPage || currentMenuPage < lastMenuPage) {
+      menuImage.className = "loading";
+      menuImage.src = nextMenuPageUrl;
 
-    if (!lastMenuPage) nextMenuImage.src = nextNextMenuPageUrl;
-  }
+      if (!lastMenuPage) nextMenuImage.src = nextNextMenuPageUrl;
+    }
 
-  if (nextMenuPage === lastMenuPage) {
-    menuNextButton.style["display"] = "none";
-  }
+    if (nextMenuPage === lastMenuPage) {
+      menuNextButton.style["display"] = "none";
+    }
 
-  menuPrevButton.style["display"] = "";
-};
+    menuPrevButton.style["display"] = "";
+  };
+}
 
 function getCurrentMenuPage() {
   const currentMenuPageRegExp = new RegExp(`[0-9](?=\.${MENU_FILE_EXTENSION})`);
